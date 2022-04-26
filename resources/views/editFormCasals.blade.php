@@ -42,73 +42,75 @@
             </ul>
         </div>
     @endif         
-    <form action="{{route('editing_product')}}" method="POST" enctype="multipart/form-data" style="text-align:center">
-        @csrf
-        <div class="add-prod-box">
-            <label for="name">Name</label>
-            <br>
-            <input type="text" id="name" name="name" required
-                minlength="1" maxlength="50" size="20">
-        </div>
-        @error('name')<div class="alert alert-danger" style="color:red">{{ $message }}</div>@enderror
-        <br>
-
-        <div class="add-prod-box">
-            <label for="name">Init Date</label>
-            <br>
-            <input type="date" id="initDate" name="initDate" required
-                size="10">
-        </div>
-        @error('initDate')<div class="alert alert-danger" style="color:red">{{ $message }}</div>@enderror
-        <br>
-
-        <div class="add-prod-box">
-            <label for="name">End Date</label>
-            <br>
-            <input type="date" id="endDate Date" name="endDate" required
-                 size="10">
-        </div>
-        @error('endDate')<div class="alert alert-danger" style="color:red">{{ $message }}</div>@enderror
-        <br>
-
-        <div class="add-prod-box">
-            <label for="name">Places</label>
-            <br>
-            <input type="text" id="places" name="places" required
-                 size="20">
-        </div>
-        @error('places')<div class="alert alert-danger" style="color:red">{{ $message }}</div>@enderror
-        <br>
-
-
-        <label for="name">City Id</label>
-        <br>
+    <form action="{{route('editing_casal')}}" method="POST" enctype="multipart/form-data" style="text-align:center">
+    @csrf
         <div>
-            <select name="id_city" id="id_city">
-            @foreach($cityInfo as $cityInf)
-                <option  value="{{$cityInf->id}}">{{$cityInf->name}}</option>
-            @endforeach
-        </select>
+            <label for="name">Your about to change this Product:</label>
+            <br>
+            <select id="name" name="name" required>
+                    <option value = "{{$casalsInfo[0]->name}}" >{{$casalsInfo[0]->name}}</option>
+            </select>
+            @error('name')<div class="alert alert-danger" style="color:red">{{ $message }}</div>@enderror
         </div>
         <br>
 
+        <div>
 
+            <label for="name">New Product's Name:</label>
+            <br>
+            <input name = "newName" type="text" value="{{$casalsInfo[0]->name}}"/>
+            <br>
+            @error('newName')<div class="alert alert-danger" style="color:red">{{ $message }}</div>@enderror
+
+            <label for="name">New city name:</label>
+            <br>
+            <select name="newCity" id="newCity">
+                @foreach($cities as $city)
+                    <option  value="{{$cities[0]->id}}">{{$city->id}}</option>
+                @endforeach
+            </select>
+            <br>
+            @error('newCity')<div class="alert alert-danger">{{ $message }}</div>@enderror
+            
+            <label for="name">New Init date:</label>
+            <br>
+            <input name = "newInitDate" type="date" value="{{$casalsInfo[0]->initDate}}"/>
+            <br>
+            @error('newInitDate')<div class="alert alert-danger">{{ $message }}</div>@enderror
+
+            <label for="name">New End Date:</label>
+            <br>
+            <input name = "newEndDate" type="date" value="{{$casalsInfo[0]->endDate}}"/>
+            <br>
+            @error('newEndDate')<div class="alert alert-danger">{{ $message }}</div>@enderror
+
+            <label for="name">places</label>
+            <br>
+            <input type="number" id="newPlaces" style="height:70px" name="newPlaces" value="{{$casalsInfo[0]->places}}" 
+            minlength="10" maxlength="255" size="70">
+            @error('newPlaces')<div class="alert alert-danger">{{ $message }}</div>@enderror
+            <br>
+            <br>
+
+        </div>
+        <br>
         <div style="cursor: pointer;display:flex;justify-content: center;">
             <div style="width:150px;text-align:center;display:grid;justify-items: center;">
                 <div style="display:grid;border:black solid 1px;align-items: center;width:100px;height:50px;">
                     <a href="">
-                        <input style="cursor:pointer;" type="submit" value="Send">
+                        <input  type="submit" value="Send">
                     </a>
                 </div>
             </div>
         </div>
         <br>
     </form> 
+
         <div style="cursor: pointer;text-align:center;display:grid;justify-items: center;">
             <div style="display:grid;border:black solid 1px;align-items: center;width:100px;height:50px;">
-                <a href="{{route('casalView')}}">
+                <a href="{{route('products')}}">
                     <button >Back</button>
                 </a>
             </div>
         </div>
-    <br>
+@endsection

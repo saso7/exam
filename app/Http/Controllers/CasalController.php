@@ -82,14 +82,16 @@ class CasalController extends Controller
     }
     public function formCasal($casal){
         if(DB::table('casals')->where('id',$casal)){
-            $allCasals = DB::table('casals')->where('id',$casal)->get();
+            $casalsInfo = DB::table('casals')->where('id',$casal)->get();
         }
-        $categories_id = DB::table('cities')->get();
+        $cities = DB::table('cities')->get();
             
 
-        return view("shop.admin.products.formEditProducts", [
-            'products' => $allCasals,
-            'categories_id' => $categories_id,
+        return view("editFormCasals", [
+            'casalsInfo' => $casalsInfo,
+            'cities' => $cities,
         ]);
     }
+
+    
 }
