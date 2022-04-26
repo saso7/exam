@@ -80,18 +80,50 @@ class CasalController extends Controller
             return $message;
         }
     }
+
     public function formCasal($casal){
         if(DB::table('casals')->where('id',$casal)){
             $casalsInfo = DB::table('casals')->where('id',$casal)->get();
         }
         $cities = DB::table('cities')->get();
             
-
+        // dd("hola");
         return view("editFormCasals", [
             'casalsInfo' => $casalsInfo,
             'cities' => $cities,
         ]);
     }
 
+
+    public function edit(Request $request){
+
+        Validator::make($request->all(), [
+            'newName' => ['required', 'string', 'max:25', 'min:5'],
+            'newInitDate' => ['required', 'date'],
+            'newEndDate' => ['required', 'date'],
+            'newPlaces' => ['required', 'numeric', 'min:1'],
+            'newCity' => ['required', 'numeric'],
+        ])->validate();
+        
+        $idCasal = DB::table('casals')->select('id')->where('name',$request->name)->get();
+        // dd($idCasal[0]->id);
+        DB::table('casals')->where('id',$idCasal[0]->id)->update([
+            'name' => $request->newName,
+            'initDate' => $request->newInitDate,
+            'endDate' => $request->newEndDate,
+            'places' => $request->newPlaces,
+            'id_city' => $request->newCity,
+        ]);
+        $casalInfo = casal::all();
+        $cityInfo = city::all()->where('id',$casalInfo[0]->id_city);
+        return view("casalView", [
+            'casalInfo' => $casalInfo,
+            'casalCity' => $cityInfo[0]->name,
+        ]);
+
+
+
+
+    }
     
 }

@@ -45,7 +45,7 @@
     <form action="{{route('editing_casal')}}" method="POST" enctype="multipart/form-data" style="text-align:center">
     @csrf
         <div>
-            <label for="name">Your about to change this Product:</label>
+            <label for="name">Your about to change this casal:</label>
             <br>
             <select id="name" name="name" required>
                     <option value = "{{$casalsInfo[0]->name}}" >{{$casalsInfo[0]->name}}</option>
@@ -56,7 +56,7 @@
 
         <div>
 
-            <label for="name">New Product's Name:</label>
+            <label for="name">New casal's Name:</label>
             <br>
             <input name = "newName" type="text" value="{{$casalsInfo[0]->name}}"/>
             <br>
@@ -66,7 +66,7 @@
             <br>
             <select name="newCity" id="newCity">
                 @foreach($cities as $city)
-                    <option  value="{{$cities[0]->id}}">{{$city->id}}</option>
+                    <option  value="{{$cities[0]->id}}">{{$city->name}}</option>
                 @endforeach
             </select>
             <br>
@@ -108,9 +108,8 @@
 
         <div style="cursor: pointer;text-align:center;display:grid;justify-items: center;">
             <div style="display:grid;border:black solid 1px;align-items: center;width:100px;height:50px;">
-                <a href="{{route('products')}}">
+                <a href="">
                     <button >Back</button>
                 </a>
             </div>
         </div>
-@endsection

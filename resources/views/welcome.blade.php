@@ -31,13 +31,7 @@
                         <div class="flex items-center">
                             <a href="{{route('casalView')}}">
                                 <button>Casal's view</button>
-                            </a>
-                            <a href="route('formAdd')">
-                                <button>Casal's Add Form</button>
-                            </a>
-                            <a href="route('formEdit')">
-                                <button>Casal's Edit form</button>
-                            </a>
+
                         </div>
                     </div> 
                 </div>
