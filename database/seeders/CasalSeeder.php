@@ -4,19 +4,17 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\casal;
 
-class DatabaseSeeder extends Seeder
+class CasalSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call([
-            CitySeeder::class,
-            CasalSeeder::class,
-        ]);
+        // casal::factory()->count(3)->create();
     }
 }
